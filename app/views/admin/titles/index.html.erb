@@ -1,0 +1,18 @@
+<%= form_with model: @title, url: admin_titles_path do |f| %>
+  <p>ジャンル名　<%= f.text_field :name %> <%= f.submit "新規登録" %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル名</th><th></th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @titles.each do |title| %>
+      <tr>
+        <td><%= title.name %></td><td><%= link_to "編集", edit_admin_title_path(title.id) %></td><td><%= link_to "削除", admin_title_path(title.id), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

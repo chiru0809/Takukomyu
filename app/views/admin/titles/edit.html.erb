@@ -1,0 +1,3 @@
+<%= form_with model: @title, url: admin_title_path(@title.id) do |f| %>
+  <p>ジャンル名　<%= f.text_field :name %> <%= f.submit "変更を保存" %></p>
+<% end %>

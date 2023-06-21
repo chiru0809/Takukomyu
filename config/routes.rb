@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   # namespace :public do
 
   # end
-  devise_for :admins
-  devise_for :users
+
   
   root to: "public/homes#top", as: 'top'
   get '/about', to: 'public/homes#about', as: 'about'
@@ -37,4 +36,12 @@ Rails.application.routes.draw do
   #   end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+  
+  devise_for :users, skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
 end

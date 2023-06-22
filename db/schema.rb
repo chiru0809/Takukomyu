@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_20_114027) do
+ActiveRecord::Schema.define(version: 2023_06_22_043340) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2023_06_20_114027) do
     t.integer "title_id"
     t.integer "main_playstyle"
     t.text "message"
-    t.string "twitter_user_name"
     t.boolean "is_private", default: false
     t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_users_on_email", unique: true

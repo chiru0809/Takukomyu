@@ -1,0 +1,21 @@
+<%= form_with model: @user, url: user_path(@user.id) do |f| %>
+  <table>
+    <tr>
+      <th>ユーザー名</th>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <th>メインタイトル</th><td><%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %></td>
+    </tr>
+    <tr>
+      <th>プレイスタイル</th><td><%= f.text_field :main_playstyle %></td>
+    </tr>
+    <tr>
+      <th>コメント</th><td><%= f.text_field :message %></td>
+    </tr>
+    <tr>
+      <th></th><td><%= f.text_field :is_private %></td>
+    </tr>
+  </table>
+  <%= f.submit '変更を保存' %>
+<% end %>

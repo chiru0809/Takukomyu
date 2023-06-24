@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー名</th><th>登録日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @users.each do |user| %>
+        <td><%= user.name %></td><td><%= user.created_at %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

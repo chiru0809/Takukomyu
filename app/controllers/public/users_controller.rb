@@ -2,7 +2,15 @@ class Public::UsersController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def index
+    if params[:search] == nil
+      @users= User.all
+    elsif params[:search] == ''
+      @users= User.all
+    else
+      @users = User.where("name LIKE ? ",'%' + params[:search] + '%')
+    end
   end
+
 
   def show
     @user = User.find(params[:id])

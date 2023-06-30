@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   namespace :public do
 
   end
-  devise_for :admins
-  devise_for :users
 
   root to: "public/homes#top", as: 'top'
   get '/about', to: 'public/homes#about', as: 'about'

@@ -35,10 +35,4 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :title_id, :main_playstyle, :is_private)
   end
   
-  protected
-  
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  end
-  
 end

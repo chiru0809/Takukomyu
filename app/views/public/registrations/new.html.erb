@@ -16,7 +16,6 @@
   <div class="field">
     <%= f.label "パスワード(6桁以上)" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -25,11 +24,6 @@
     <%= f.label "パスワード(確認)" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-  
-  <!--<div class="field">-->
-  <!--  <%= f.label "メインタイトル" %><br />-->
-  <!--  <%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %>-->
-  <!--</div>-->
 
   <div class="actions">
     <%= f.submit "Sign up" %>

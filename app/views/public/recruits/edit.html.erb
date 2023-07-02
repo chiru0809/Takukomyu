@@ -1,0 +1,18 @@
+<%= form_with model: @recruit, url: recruit_path(@recruit.id) do |f| %>
+  <div class="field">
+    <%= f.label "タイトル" %><br />
+    <%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %>
+  </div>
+  <div class="field">
+    <%= f.label "シナリオ名" %><br />
+    <%= f.text_field :scenario_name, size: "50x1" %>
+  </div>
+  <div class="field">
+    <%= f.label "メッセージ" %><br />
+    <%= f.text_area :message, placeholder: recruit_message, size: "60x20" %>
+  </div>
+  <%= f.hidden_field :recruit_status, :value => true %>
+  <div class="field">
+    <%= f.submit "更新" %>
+  </div>
+<% end %>

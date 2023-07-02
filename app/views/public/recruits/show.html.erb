@@ -1,0 +1,28 @@
+<%= image_tag @recruit.user.get_profile_image(100,100) %><%= @recruit.user.name %>
+<div class="field">
+  <h4>タイトル</h4>
+  <%= @recruit.title.name %>
+</div>
+<div class="field">
+  <h4>シナリオ名</h4>
+  <%= @recruit.scenario_name %>
+</div>
+<div class="field">
+<h4>メッセージ</h4>
+  <%= safe_join(@recruit.message.split("\n"), tag(:br) ) %>
+</div>
+
+<p><strong>
+  <% if @recruit.recruit_status == true %>
+    募集中
+  <% else %>
+    募集終了
+  <% end %>
+</strong></p>
+<% if @recruit.user_id == current_user.id %>
+  <%= link_to "編集", edit_recruit_path(@recruit.id) %>
+<% end %>
+
+<div class="field">
+  <%= link_to "一覧に戻る", recruits_path %>
+</div>

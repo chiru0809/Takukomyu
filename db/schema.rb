@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2023_07_01_125618) do
     t.integer "title_id", null: false
     t.string "scenario_name", null: false
     t.string "message"
+
     t.boolean "recruit_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

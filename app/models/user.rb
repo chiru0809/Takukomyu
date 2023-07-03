@@ -4,8 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :title
-  has_many :recruits
+
+  belongs_to :title, optional: true
+  has_many :recruits, dependent: :destroy 
+
   has_one_attached :profile_image
   
   def get_profile_image(width,height)

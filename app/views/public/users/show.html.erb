@@ -6,7 +6,11 @@
     <th>ユーザー名</th><td><%= @user.name %></td>
   </tr>
   <tr>
-    <th>メインタイトル</th><td><%= @user.title.name %></td>
+    <% if @user.title_id == nil %>
+      <th>メインタイトル</th><td>未設定</td>
+    <% else %>
+      <th>メインタイトル</th><td><%= @user.title.name %></td>
+    <% end %>
   </tr>
   <tr>
     <th>プレイスタイル</th><td><%= @user.main_playstyle %></td>

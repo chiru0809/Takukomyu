@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-
-  end
 
   root to: "public/homes#top", as: 'top'
   get '/about', to: 'public/homes#about', as: 'about'
@@ -23,14 +20,14 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-
+  
   scope module: :public do
     resources :play_histores, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       # resource :favorites, only: [:create, :destroy]
     end
-  #   resources :recruits, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-  #     resource :comments, only: [:create, :update, :destroy]
-  #   end
+    resources :recruits, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resource :comments, only: [:create, :update, :destroy]
+    end
     resources :users, only: [:index, :show, :edit, :update]
 
   #   post '/user/:/users/:user_id/follows'

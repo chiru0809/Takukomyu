@@ -1,6 +1,14 @@
 class Public::RecruitsController < ApplicationController
   def index
-    @recruits = Recruit.all
+    if params[:search] == nil
+      @recruits = Recruit.all
+    elsif params[:search] == ''
+      @recruits = Recruit.all
+    else
+      @search_title = params[:search] 
+      @recruits = Recruit.where(title_id: @search_title )
+    end
+
   end
 
   def new
@@ -33,6 +41,12 @@ class Public::RecruitsController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    recruit = Recruit.find(params[:id])
+    recruit.destroy
+    redirect_to recruits_path
   end
 
   private

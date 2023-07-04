@@ -21,6 +21,7 @@
 </strong></p>
 <% if @recruit.user_id == current_user.id %>
   <%= link_to "編集", edit_recruit_path(@recruit.id) %>
+  <%= link_to "削除", recruit_path(@recruit.id), method: :delete, data: {confirm: "削除しますか？"} %>
 <% end %>
 
 <div class="field">

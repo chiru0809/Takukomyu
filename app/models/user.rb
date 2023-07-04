@@ -6,10 +6,10 @@ class User < ApplicationRecord
 
 
   belongs_to :title, optional: true
-  has_many :recruits, dependent: :destroy 
+  has_many :recruits, dependent: :destroy
 
   has_one_attached :profile_image
-  
+
   def get_profile_image(width,height)
     unless profile_image.attached?
      file_path = Rails.root.join('app/assets/images/user_default.jpg')

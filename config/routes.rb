@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-
+  
   scope module: :public do
     resources :play_histores, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       # resource :favorites, only: [:create, :destroy]

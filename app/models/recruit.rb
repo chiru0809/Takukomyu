@@ -6,4 +6,5 @@ class Recruit < ApplicationRecord
   
   belongs_to :user
   belongs_to :title
+  has_many :comments, dependent: :destroy
 end

@@ -28,6 +28,7 @@ class Public::RecruitsController < ApplicationController
 
   def show
     @recruit = Recruit.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -46,7 +47,7 @@ class Public::RecruitsController < ApplicationController
   def destroy
     recruit = Recruit.find(params[:id])
     recruit.destroy
-    redirect_to recruits_path
+    redirect_to recruits_path(params[:recruit_id])
   end
 
   private

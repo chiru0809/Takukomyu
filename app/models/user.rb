@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   belongs_to :title, optional: true
   has_many :recruits, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_one_attached :profile_image
 

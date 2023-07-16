@@ -1,0 +1,34 @@
+<%= form_with model: @play_histories, url: play_histores_path do |f| %>
+  <table>
+    <tr>
+      <th>シナリオ名</th><td><%= f.text_field :scenario_name %></td>
+    </tr>
+    <tr>
+      <th>タイトル</th><td><%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %></td>
+    </tr>
+    <tr>
+      <th>プレイ方法</th>
+      <td>
+        <%= f.radio_button :payment_method, PlayHistory.play_styles.key(0), checked: true %>
+        <%= f.label :payment_method_credit_card, PlayHistory.play_styles_i18n[:gm] %>
+        <%= f.radio_button :payment_method, PlayHistory.play_styles.key(1) %>
+        <%= f.label :payment_method_credit_card, PlayHistory.play_styles_i18n[:player] %>
+      </td>
+    </tr>
+    <tr>
+      <th>メモ</th><td><%= f.text_field :memo %></td>
+    </tr>
+    <tr>
+      <th>ネタバレメモ</th><td><%= f.text_field :secret_memo %></td>
+    </tr>
+    <tr>
+      <th>公開設定</th>
+      <td>
+        <%= f.radio_button :is_active, true, checked: true %>
+        <%= f.label :is_active_status_true, "公開" %>
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active_status_false, "非公開" %>
+      </td>
+    </tr>
+  </table>
+<% end %>

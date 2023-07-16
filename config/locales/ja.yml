@@ -1,0 +1,13 @@
+ja:
+  enums:
+    user:
+      main_playstyle:
+        gm_only: "GMのみ"
+        gm_trend: "GMメイン"
+        both: "GM・PLどちらも"
+        player_trend: "PLメイン"
+        player_only: "PLのみ"
+    play_history:
+      play_style:
+        gm: "GM"
+        player: "PL"

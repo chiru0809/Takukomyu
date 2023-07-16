@@ -1,2 +1,30 @@
-<h1>Public::PlayHistores#show</h1>
-<p>Find me in app/views/public/play_histores/show.html.erb</p>
+<table>
+  <tr>
+    <th>シナリオ名</th><td><%= @play_history.scenario_name %></td>
+  </tr>
+  <tr>
+    <th>タイトル</th><td><%= @play_history.title.name) %></td>
+  </tr>
+  <tr>
+    <th>プレイ方法</th>
+    <td><%= @play_history.play_style_i18n %></td>
+  </tr>
+  <tr>
+    <th>メモ</th><td><%= @play_history.memo %></td>
+  </tr>
+  <tr>
+    <th>ネタバレメモ</th><td><%= @play_history.secret_memo %></td>
+  </tr>
+  <% if @play_history.user_id == current_user.id %>
+    <tr>
+      <th>公開設定</th>
+      <td>
+        <% if @play_history.is_active == true %>
+          公開
+        <% elsif @play_history.is_active == false %>
+          非公開
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

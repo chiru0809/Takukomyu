@@ -1,30 +1,36 @@
-<table>
+<p>シナリオ名</p>
+<p><%= @play_history.scenario_name %></p>
+<p>タイトル</p>
+<p><%= @play_history.title.name %>　担当：<%= @play_history.play_style_i18n %></p>
+<p>メモ</p>
+<p><%= safe_join(@play_history.memo.split("\n"), tag(:br) ) %></p>
+<p>ネタバレメモ</p>
+<details close><summary>ネタバレメモ</summary><%= safe_join(@play_history.secret_memo.split("\n"), tag(:br) ) %></details>
+<% if @play_history.user_id == current_user.id %>
   <tr>
-    <th>シナリオ名</th><td><%= @play_history.scenario_name %></td>
+    <th>公開設定</th>
+    <td>
+      <% if @play_history.is_active == true %>
+        公開
+      <% elsif @play_history.is_active == false %>
+        非公開
+      <% end %>
+    </td>
   </tr>
-  <tr>
-    <th>タイトル</th><td><%= @play_history.title.name) %></td>
-  </tr>
-  <tr>
-    <th>プレイ方法</th>
-    <td><%= @play_history.play_style_i18n %></td>
-  </tr>
-  <tr>
-    <th>メモ</th><td><%= @play_history.memo %></td>
-  </tr>
-  <tr>
-    <th>ネタバレメモ</th><td><%= @play_history.secret_memo %></td>
-  </tr>
-  <% if @play_history.user_id == current_user.id %>
-    <tr>
-      <th>公開設定</th>
-      <td>
-        <% if @play_history.is_active == true %>
-          公開
-        <% elsif @play_history.is_active == false %>
-          非公開
-        <% end %>
-      </td>
-    </tr>
+  <%= link_to "編集", edit_play_histore_path(@play_history.id) %>
+  <%= link_to "削除", play_histore_path(@play_history.id), method: :delete, data: {confirm: "削除しますか？"} %>
+<% end %>
+
+<% if @play_history.favorited_by?(current_user) %>
+    <p>
+      <%= link_to play_histore_favorites_path(@play_history), method: :delete do %>
+        ♥<%= @play_history.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to play_histore_favorites_path(@play_history), method: :post do %>
+        ♡<%= @play_history.favorites.count %> いいね
+      <% end %>
+    </p>
   <% end %>
-</table>

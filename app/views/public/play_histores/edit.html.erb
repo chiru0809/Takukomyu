@@ -1,2 +1,41 @@
-<h1>Public::PlayHistores#edit</h1>
-<p>Find me in app/views/public/play_histores/edit.html.erb</p>
+<%= form_with model: @play_history, url: play_histore_path(@play_history.id) do |f| %>
+  <table>
+    <tr>
+      <th>シナリオ名(必須)</th><td><%= f.text_field :scenario_name %></td>
+    </tr>
+    <tr>
+      <th>タイトル</th><td><%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %></td>
+    </tr>
+    <tr>
+      <th>プレイ方法</th>
+      <td>
+        <%= f.radio_button :play_style, PlayHistory.play_styles.key(0), checked: true %>
+        <%= f.label :play_style_gm, PlayHistory.play_styles_i18n[:gm] %>
+        <%= f.radio_button :play_style, PlayHistory.play_styles.key(1) %>
+        <%= f.label :play_style_player, PlayHistory.play_styles_i18n[:player] %>
+      </td>
+    </tr>
+    <tr>
+      <th>メモ</th><td></td>
+    </tr>
+    <tr>
+      <th></th><td><%= f.text_area :memo, placeholder: play_history_memo, size: "60x20" %></td>
+    </tr>
+    <tr>
+      <th>ネタバレメモ</th><td></td>
+    </tr>
+    <tr>
+      <th></th><td><%= f.text_area :secret_memo, placeholder: play_history_secret_memo, size: "60x20" %></td>
+    </tr>
+    <tr>
+      <th>公開設定</th>
+      <td>
+        <%= f.radio_button :is_active, true, checked: true %>
+        <%= f.label :is_active_status_true, "公開" %>
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active_status_false, "非公開" %>
+      </td>
+    </tr>
+  </table>
+  <%= f.submit "更新" %>
+<% end %>

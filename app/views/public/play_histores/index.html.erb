@@ -1,7 +1,12 @@
+<%= link_to "＋", new_play_histore_path %>
+<%= form_tag({controller:"play_histores",action:"index"}, method: :get) do %>
+ <%= text_field_tag :search %>
+ <%= submit_tag '検索する' %>
+<% end %>
 <table>
   <thead>
     <tr>
-      <th>シナリオ名</th><th>タイトル</th><th>プレイ方法</th><th>登録日</th>
+      <th>シナリオ名</th><th>タイトル</th><th>担当</th><th>登録日</th>
     </tr>
   </thead>
   <tbody>

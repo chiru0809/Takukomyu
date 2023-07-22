@@ -3,4 +3,5 @@ class Title < ApplicationRecord
   
   has_many :users
   has_many :recruits
+  has_many :play_histores
 end

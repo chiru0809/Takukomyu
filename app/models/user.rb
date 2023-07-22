@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :recruits, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :play_histores, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   enum main_playstyle: { gm_only: 0, gm_trend: 1, both: 2, player_trend: 3, player_only: 4}
 

@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">ユーザー名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @following_users.each do |following_user| %>
+      <tr>
+        <td>
+          <%= link_to user_path(following_user.id) do %>
+            <%= image_tag following_user.get_profile_image(80,80) %>
+            <%= following_user.name %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

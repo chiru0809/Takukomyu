@@ -10,8 +10,8 @@
       <th>プレイ方法</th>
       <td>
         <%= f.radio_button :play_style, PlayHistory.play_styles.key(0), checked: true %>
-        <%= f.label :play_style_gm, PlayHistory.play_styles_i18n[:gm] %>
-        <%= f.radio_button :play_style, PlayHistory.play_styles.key(1) %>
+        <%= f.label :main_playstyle_gm, PlayHistory.play_styles_i18n[:gm] %>
+        <%= f.radio_button :main_playstyle, PlayHistory.play_styles.key(1) %>
         <%= f.label :play_style_player, PlayHistory.play_styles_i18n[:player] %>
       </td>
     </tr>

@@ -1,5 +1,4 @@
 class Public::FavoritesController < ApplicationController
-  
   def create
     play_history = PlayHistory.find(params[:play_histore_id])
     favorite = current_user.favorites.new(play_history_id: play_history.id)

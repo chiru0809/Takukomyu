@@ -19,8 +19,12 @@ Rails.application.routes.draw do
     resources :recruits, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:create, :update, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update]
-
+    resources :users, only: [:index, :show, :edit, :update]do
+      resource :follows, only: [:create, :destroy]
+      get 'followings' => 'follows#followings', as: 'followings'
+      get 'followers' => 'follows#followers', as: 'followers'
+    end
+    get 'following_users' => 'follows#index', as: 'following_users'
   #   post '/user/:/users/:user_id/follows'
   #   patch '/users/:user_id/follows'
   #   get '/users/confirm', to: 'users#confirm', as: 'confirm'

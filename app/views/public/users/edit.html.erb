@@ -12,7 +12,19 @@
       <th>メインタイトル</th><td><%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %></td>
     </tr>
     <tr>
-      <th>プレイスタイル</th><td><%= f.text_field :main_playstyle %></td>
+      <th>プレイスタイル</th>
+      <td>
+        <%= f.radio_button :main_playstyle, User.main_playstyles.key(0), checked: true %>
+        <%= f.label :main_play_style_gm_only, User.main_playstyles_i18n[:gm_only] %>
+        <%= f.radio_button :main_playstylee, User.main_playstyles.key(1) %>
+        <%= f.label :main_play_style_gm_trend, User.main_playstyles_i18n[:gm_trend] %>
+        <%= f.radio_button :main_playstyle, User.main_playstyles.key(2)%>
+        <%= f.label :main_play_style_both, User.main_playstyles_i18n[:both] %>
+        <%= f.radio_button :main_playstyle, User.main_playstyles.key(3) %>
+        <%= f.label :main_play_style_player_trend, User.main_playstyles_i18n[:player_trend] %>
+        <%= f.radio_button :main_playstyle, User.main_playstyles.key(4) %>
+        <%= f.label :main_play_style_player_only, User.main_playstyles_i18n[:player_only] %>
+      </td>
     </tr>
     <tr>
       <th>コメント</th><td><%= f.text_field :message %></td>

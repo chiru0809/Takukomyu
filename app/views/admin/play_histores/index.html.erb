@@ -4,15 +4,12 @@
   </div>
 
   <div class="d-flex align-items-center px-3 pb-2 my-2">
-    <%= link_to new_play_histore_path, class: "btn btn-primary" do %>
-      <i class="fa-solid fa-clipboard-list"></i> プレイ履歴登録
-    <% end %>
     <div class="ml-auto">
       <%= form_tag({controller:"play_histores",action:"index"}, method: :get) do %>
         <%= text_field_tag :search %>
         <%= submit_tag '検索する' %>
       <% end %>
-      <%= link_to "条件クリア", play_histores_path, class: "btn btn-secondary mt-1" %>
+      <%= link_to "条件クリア", admin_play_histores_path, class: "btn btn-secondary mt-1" %>
     </div>
   </div>
   <div class="my-2 p-3 bg-white rounded shadow-sm">
@@ -25,13 +22,13 @@
       <tbody>
         <% @play_histores.each do |play_history| %>
           <tr>
-            <td class="align-middle"><%= link_to user_path(play_history.user_id) do %>
+            <td class="align-middle"><%= link_to admin_user_path(play_history.user_id) do %>
                 <%= image_tag play_history.user.get_profile_image.variant(resize: "60x60!") %>
                 <%= play_history.user.name %>
               <% end %>
             </td>
             <td class="align-middle">
-              <%= link_to play_histore_path(play_history.id) do %>
+              <%= link_to admin_play_histore_path(play_history.id) do %>
                 <%= play_history.scenario_name %>
               <% end %>
             </td>

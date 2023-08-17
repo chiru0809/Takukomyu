@@ -1,2 +1,86 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-light bg-gray rounded shadow-sm">
+    <%= image_tag @user.get_profile_image.variant(resize: "100x100!") %>
+    <h3>
+      <%= @user.name %>
+      <% if @user.is_private == true %>
+        <i class="fa-solid fa-lock"></i>
+      <% end %>
+    </h3>
+    <div class="ml-2">
+      <%= link_to edit_admin_user_path(@user.id), class: "btn btn-outline-light" do %>
+        <i class="fa-solid fa-gear"></i> 編集
+      <% end %>
+    </div>
+    <div class="ml-auto">
+      <%= link_to following_users_path, class: "btn btn-light" do %>
+        <i class="fa-regular fa-star"></i> フォローユーザー
+      <% end %>
+    </div>
+  </div>
+
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-3"><strong>メインプレイ</strong></h6>
+    <% if @user.title_id == nil %>
+      <p><span class="p-2 bg-gray text-light">未設定</span></p>
+    <% elsif @user.title_id == 1 %>
+      <p><span class="p-2 bg-success text-light"><%= @user.title.name %></span></p>
+    <% else %>
+      <p><span class="p-2 bg-warning text-light"><%= @user.title.name %></span></p>
+    <% end %>
+
+    <p>
+      プレイスタイル：
+      <% if @user.main_playstyle == nil %>
+        未設定
+      <% else %>
+        <%= @user.main_playstyle_i18n %>
+      <% end %>
+    </p>
+
+    <h6 class="border-bottom border-gray py-2 my-2"><strong>自己紹介</strong></h6>
+
+    <p class="border border-secondary bg-message text-light p-3">
+      <% if @user.message == nil %>
+        よろしくお願いします！
+      <% else %>
+        <%= safe_join(@user.message.split("\n"), tag(:br) )  %>
+      <% end %>
+    </p>
+  </div>
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-3"><strong><%= @user.name %>のプレイ履歴</strong></h6>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>ユーザー</th><th>シナリオ名</th><th>タイトル</th><th>担当</th><th>登録日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @play_histores.each do |play_history| %>
+          <tr>
+            <td class="align-middle"><%= link_to admin_user_path(play_history.user_id) do %>
+                <%= image_tag play_history.user.get_profile_image.variant(resize: "60x60!") %>
+                <%= play_history.user.name %>
+              <% end %>
+            </td>
+            <td class="align-middle">
+              <%= link_to admin_play_histore_path(play_history.id) do %>
+                <%= play_history.scenario_name %>
+              <% end %>
+            </td>
+            <td class="align-middle">
+              <% if play_history.title_id == 1 %>
+                <span class="p-2 bg-success text-light"><%= play_history.title.name %></span>
+              <% else %>
+                <span class="p-2 bg-warning text-light"><%= play_history.title.name %></span>
+              <% end %>
+            </td>
+            <td class="align-middle"><%= play_history.play_style_i18n %></td>
+            <td class="align-middle"><%= play_history.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

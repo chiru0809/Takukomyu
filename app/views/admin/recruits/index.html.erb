@@ -4,9 +4,6 @@
   </div>
 
   <div class="d-flex align-items-center px-3 pb-2 my-2">
-    <%= link_to new_recruit_path, class: "btn btn-primary" do %>
-      <i class="fa-solid fa-dice"></i> メンバーを募集する
-    <% end %>
     <div class="ml-auto">
       <%= form_tag({controller:"recruits",action:"index"}, method: :get) do %>
         <%= select_tag :search, options_from_collection_for_select(Title.all, :id, :name) %>
@@ -30,13 +27,13 @@
         <% @recruits.each do |recruit| %>
           <tr>
             <td class="pt-2 pr-2">
-              <%= link_to user_path(recruit.user.id) do %>
+              <%= link_to admin_user_path(recruit.user.id) do %>
                 <%= image_tag recruit.user.get_profile_image.variant(resize: "60x60!") %>
                 <%= recruit.user.name %>
               <% end %>
             </td>
             <td class="align-middle">
-              <%= link_to recruit_path(recruit.id) do %>
+              <%= link_to admin_recruit_path(recruit.id) do %>
                 <%= recruit.scenario_name %>
               <% end %>
             </td>

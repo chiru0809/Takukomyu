@@ -6,21 +6,138 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/e0fb69895e.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+    .btn-login {
+        background-color: rgb(21, 190, 174);
+        color: rgb(255, 255, 255);
+      }
+
+      .btn-login:hover {
+        background-color: rgb(255, 255, 255);
+        color: rgb(21, 190, 174);
+        border-color: rgb(21, 190, 174);
+      }
+
+      .btn-sign_up {
+        background-color: rgb(200, 150, 120);
+        color: rgb(255, 255, 255);
+      }
+
+      .btn-sign_up:hover {
+        background-color: rgb(255, 255, 255);
+        color: rgb(200, 150, 120);
+        border-color: rrgb(200, 150, 120);
+      }
+
+     .btn-favorited {
+        background-color: rgb(250, 124, 193);
+        color: rgb(255, 255, 255);
+      }
+
+      .btn-favorited:hover {
+        background-color: rgb(255, 255, 255);
+        color: rgb(250, 124, 193);
+        border-color: rgba(250, 124, 193);
+      }
+
+      .btn-favorit {
+        background-color: rgb(255, 255, 255);
+        color: rgb(250, 124, 193);
+        border-color: rgba(250, 124, 193);
+      }
+
+      .btn-favorit:hover {
+        background-color: rgb(250, 124, 193);
+        color:rgb(255, 255, 255);
+      }
+
+      .btn-admin-login {
+        background-color: rgb(106, 108, 247);
+        color: rgb(255, 255, 255);
+        border-color: rgba(106, 108, 247);
+      }
+
+      .btn-admin-login:hover {
+        background-color: rgb(255, 255, 255);
+        color: rgb(106, 108, 247);
+        border-color: rgba(106, 108, 247);
+      }
+
+    </style>
   </head>
 
-  <body>
+  <body style="background-color:#E7E7E8;">
     <header>
-      <% if user_signed_in? %>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-      <% elsif admin_signed_in? %>  
-        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
-        <li><%= link_to "新規登録", new_user_registration_path %></li>
-      <% end %>
-    </header>
+      <div class="cotainer">
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#8FC8E7;">
+        <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand page-title" href="/">卓コミュ</a>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+              <li class="nav-item text-dark">
+                <%= link_to user_path(current_user.id), class: 'nav-link text-dark' do %>
+                  <%= image_tag current_user.get_profile_image.variant(resize: "50x50!") %>
+                  <%= current_user.name %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'プレイ履歴', play_histores_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'メンバー募集', recruits_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ユーザー検索', users_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+              </li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'プレイ履歴', admin_play_histores_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'メンバー募集', admin_recruits_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ユーザー検索', users_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'About', about_path, class: 'nav-link text-dark' %>
+              <li class="nav-item">
+                <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'プレイ履歴', play_histores_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'メンバー募集', recruits_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ユーザー検索', users_path, class: 'nav-link text-dark' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
     <%= yield %>
+  </main>
   </body>
 </html>

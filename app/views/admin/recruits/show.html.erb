@@ -21,11 +21,8 @@
       <h6 class="border-bottom border-gray pb-2 my-4"><strong>メッセージ</strong></h6>
       <%= safe_join(@recruit.message.split("\n"), tag(:br) ) %>
     </div>
-    <% if @recruit.user_id == current_user.id %>
-
-      <%= link_to "編集", edit_recruit_path(@recruit.id), class: "btn btn-secondary" %>
-      <%= link_to "削除", recruit_path(@recruit.id), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
-    <% end %>
+    <%= link_to "編集", edit_admin_recruit_path(@recruit.id), class: "btn btn-secondary" %>
+    <%= link_to "削除", admin_recruit_path(@recruit.id), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
   </div>
 
   <div class="align-items-center p-3 my-3 text-light bg-gray rounded shadow-sm">
@@ -41,18 +38,11 @@
         <div class="col-auto">
           <%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
         </div>
-        <% if comment.user == current_user %>
-          <div class="col-auto">
-            <%= link_to "削除", recruit_comment_path(comment.recruit, comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
-          </div>
-        <% end %>
+        <div class="col-auto">
+          <%= link_to "削除", admin_recruit_comments_path(comment.recruit, comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
+        </div>
     <% end %>
     </div>
   </div>
-  <div>
-    <%= form_with model: [@recruit, @comment] do |f| %>
-      <%= f.text_area :comment, placeholder: "コメント", size: "60x10" %>
-      <%= f.submit "送信する" %>
-    <% end %>
-  </div>
+  <%= link_to "一覧に戻る", recruits_path, class: "btn btn-info" %>
 </div>

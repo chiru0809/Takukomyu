@@ -4,6 +4,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @play_histores = PlayHistory.where(user_id: params[:id])
     @user = User.find(params[:id])
   end
 

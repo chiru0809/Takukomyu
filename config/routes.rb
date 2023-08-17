@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: "public/homes#top", as: 'top'
+  root to: "ublic/homes#top", as: 'top'
   get '/about', to: 'public/homes#about', as: 'about'
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
+
   scope module: :public do
     resources :play_histores, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get 'followers' => 'follows#followers', as: 'followers'
     end
     get 'following_users' => 'follows#index', as: 'following_users'
+    # get 'search_play_histores'=>'playHistores#search_play_histores', as: 'search_play_histores'
   #   post '/user/:/users/:user_id/follows'
   #   patch '/users/:user_id/follows'
   #   get '/users/confirm', to: 'users#confirm', as: 'confirm'
@@ -33,12 +34,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-  #   resources :play_histores, only: [:index,:show, :destroy]
+    resources :play_histores, only: [:index,:show, :edit, :update, :destroy]
     resources :titles, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
-  #   resources :recruits, only: [:index,:show, :destroy] do
-  #     resource :comments, only: [:destroy]
-  #   end
+    resources :recruits, only: [:index,:show,:edit, :update, :destroy] do
+      resource :comments, only: [:destroy]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

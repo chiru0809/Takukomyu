@@ -9,7 +9,7 @@
       <tr>
         <td>
           <%= link_to user_path(following_user.id) do %>
-            <%= image_tag following_user.get_profile_image(80,80) %>
+            <%= image_tag following_user.get_profile_image.variant(resize: "80x80") %>
             <%= following_user.name %>
           <% end %>
         </td>

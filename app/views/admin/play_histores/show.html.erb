@@ -11,7 +11,7 @@
   <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h3 class="d-inline">
         <%= @play_history.scenario_name %>
-        <% if @play_history.is_active == true %>
+        <% if @play_history.is_active == false %>
           <i class="fa-solid fa-lock"></i>
         <% end %>
       </h3>
@@ -32,19 +32,7 @@
         <details close><summary class="border-bottom border-gray pb-2 my-4"><h6 class="d-inline"><strong>ネタバレメモ</strong></summary></h6>
         <%= safe_join(@play_history.secret_memo.split("\n"), tag(:br) ) %></details>
     </div>
-    <% if @play_history.favorited_by?(current_user) %>
-        <%= link_to play_histore_favorites_path(@play_history), method: :delete, class: "btn btn-favorited" do %>
-          ♥<%= @play_history.favorites.count %>
-        <% end %>
-      <% else %>
-        <%= link_to play_histore_favorites_path(@play_history), method: :post, class: "btn btn-favorit" do %>
-          ♡<%= @play_history.favorites.count %>
-        <% end %>
-    <% end %>
-    </strong></p>
-    <% if @play_history.user_id == current_user.id %>
-      <%= link_to "編集", edit_play_histore_path(@play_history.id), class: "btn btn-secondary" %>
-      <%= link_to "削除", play_histore_path(@play_history.id), class: "btn btn-danger", method: :delete, data: {confirm: "削除しますか？"} %>
-    <% end %>
+    <%= link_to "編集", edit_admin_play_histore_path(@play_history.id), class: "btn btn-secondary" %>
+    <%= link_to "削除", admin_play_histore_path(@play_history.id), class: "btn btn-danger", method: :delete, data: {confirm: "削除しますか？"} %>
   </div>
 </div>

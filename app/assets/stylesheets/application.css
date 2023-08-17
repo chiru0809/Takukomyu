@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+ul {
+  align-items: center
+}
+
+.page-title {
+    font-family: "Hannotate TC";
+}
+
+.btn-favorited {
+  background-color: #FA7CC1;
+  color: white;
+  padding: 2px;
+}
+
+.btn-favorit {
+  border-color: #FA7CC1;
+  color: #FA7CC1;
+}
+
+.first-form {
+  max-width: 580px;
+}

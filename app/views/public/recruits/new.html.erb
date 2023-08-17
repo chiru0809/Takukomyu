@@ -1,18 +1,33 @@
-<%= form_with model: @recruit, url: recruits_path do |f| %>
-  <div class="field">
-    <%= f.label "タイトル" %><br />
-    <%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %>
+<div class="container">
+  <div class="d-flex align-items-center p-3 my-2">
+    <h4 class="border-bottom border-primary border-3 page-title">メンバー募集登録</h4>
   </div>
-  <div class="field">
-    <%= f.label "シナリオ名" %><br />
-    <%= f.text_field :scenario_name, size: "50x1" %>
+
+  <div class="my-2 p-3 bg-white rounded shadow-sm">
+    <%= form_with model: @recruit, url: recruits_path do |f| %>
+      <table class="table table-borderless">
+        <tr class="border-bottom border-gray pb-2 my-3">
+          <th>シナリオ名</th>
+          <td><%= f.text_field :scenario_name, size: "50x1" %></td>
+        </tr>
+        <tr class="border-bottom border-gray pb-2 mb-3">
+          <th>タイトル</th>
+          <td><%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %></td>
+        </tr>
+        <tr class="border-bottom border-gray pb-2 my-3">
+          <th>メッセージ</th>
+          <td><%= f.text_area :message, placeholder: recruit_message, size: "60x20" %></td>
+        </tr>
+        <tr class="pb-2-my-3">
+          <th></th>
+          <td>
+            <div class="text-right">
+              <%= f.hidden_field :recruit_status, :value => true %>
+              <%= f.submit "登録する", class: "btn btn-primary" %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label "メッセージ" %><br />
-    <%= f.text_area :message, placeholder: recruit_message, size: "60x20" %>
-  </div>
-  <%= f.hidden_field :recruit_status, :value => true %>
-  <div class="field">
-    <%= f.submit "登録する" %>
-  </div>
-<% end %>
+</div>

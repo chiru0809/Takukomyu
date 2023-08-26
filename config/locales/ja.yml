@@ -11,3 +11,10 @@ ja:
       play_style:
         gm: "GM"
         player: "PL"
+      status:
+        published: "投稿する"
+        draft: "下書きする"
+    recruit:
+      status:
+        published: "投稿する"
+        draft: "下書きする"

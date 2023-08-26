@@ -55,6 +55,29 @@
         color:rgb(255, 255, 255);
       }
 
+      .btn-draft {
+        background-color: rgb(35, 220, 220);
+        color: rgb(255, 255, 255);
+        border-color: rgb(35, 220, 220);
+      }
+
+      .btn-draft:hover {
+        background-color: rgba(35, 220, 220, 0.8);
+        color: rgb(255, 255, 255);
+        border-color: rgba(35, 220, 220, 0.8);
+      }
+
+      .btn-favorit {
+        background-color: rgb(255, 255, 255);
+        color: rgb(250, 124, 193);
+        border-color: rgba(250, 124, 193);
+      }
+
+      .btn-favorit:hover {
+        background-color: rgb(250, 124, 193);
+        color:rgb(255, 255, 255);
+      }
+
       .btn-admin-login {
         background-color: rgb(106, 108, 247);
         color: rgb(255, 255, 255);
@@ -100,6 +123,9 @@
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
               </li>
             <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'タイトル一覧', admin_titles_path, class: 'nav-link text-dark' %>
+              </li>
               <li class="nav-item">
                 <%= link_to 'プレイ履歴', admin_play_histores_path, class: 'nav-link text-dark' %>
               </li>

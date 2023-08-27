@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
     if params[:search] == nil
       @users= User.where(is_private: false)
     elsif params[:search] == ''
-      @users= User.(is_private: false)
+      @users= User.where(is_private: false)
     else
       @users = User.where(is_private: false).where("name LIKE ? ",'%' + params[:search] + '%')
     end

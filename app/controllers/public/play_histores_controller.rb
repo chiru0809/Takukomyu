@@ -59,6 +59,6 @@ class Public::PlayHistoresController < ApplicationController
   private
 
   def play_history_params
-    params.require(:play_history).permit(:title_id, :scenario_name, :play_style, :memo, :secret_memo, :is_active)
+    params.require(:play_history).permit(:title_id, :scenario_name, :play_style, :memo, :secret_memo, :is_active, :status)
   end
 end

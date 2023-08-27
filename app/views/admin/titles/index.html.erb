@@ -1,18 +1,25 @@
-<%= form_with model: @title, url: admin_titles_path do |f| %>
-  <p>ジャンル名　<%= f.text_field :name %> <%= f.submit "新規登録" %></p>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>タイトル名</th><th></th><th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @titles.each do |title| %>
-      <tr>
-        <td><%= title.name %></td><td><%= link_to "編集", edit_admin_title_path(title.id) %></td><td><%= link_to "削除", admin_title_path(title.id), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="d-flex align-items-center p-3 my-2">
+    <h4 class="border-bottom border-primary border-3 page-title">タイトル一覧</h4>
+  </div>
+  <div class="first-form mx-auto">
+    <div class="my-3 p-4 bg-white rounded shadow-sm">
+      <%= form_with model: @title, url: admin_titles_path do |f| %>
+        <form>
+          <div class="row mb-4">
+            <label for="inputEmail" class="col-sm-3 col-form-label">タイトル名</label>
+            <div class="col-sm-8">
+              <%= f.text_field :name, autofocus: true, class: "form-control"%> <%= f.submit "新規登録", class: "btn btn-primary mt-3" %>
+            </div>
+          </div>
+        </form>
+      <% end %>
+      <% @titles.each do |title| %>
+        <p class="text-center border-bottom border-gray pb-2 my-4">
+          <%= title.name %>　<%= link_to "編集", edit_admin_title_path(title.id), class: "btn btn-secondary mr-2" %>
+          <%= link_to "削除", admin_title_path(title.id), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

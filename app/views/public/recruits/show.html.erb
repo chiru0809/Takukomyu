@@ -11,48 +11,56 @@
       　<span class="p-2 bg-warning text-light"><%= @recruit.title.name %></span>
     <% end %>
     <p class="mt-3"><strong>
-      <% if @recruit.recruit_status == true %>
-        <span class="text-success">募集中</span>
+      <% if @recruit.status == "published" %>
+        <% if @recruit.recruit_status == true %>
+          <span class="text-success">募集中</span>
+        <% else %>
+          <span class="text-secondary">募集終了</span>
+        <% end %>
       <% else %>
-        <span class="text-secondary">募集終了</span>
+        <span class="text-info">下書き</span>
       <% end %>
     </strong></p>
     <div class="mb-3">
       <h6 class="border-bottom border-gray pb-2 my-4"><strong>メッセージ</strong></h6>
       <%= safe_join(@recruit.message.split("\n"), tag(:br) ) %>
     </div>
-    <% if @recruit.user_id == current_user.id %>
-
-      <%= link_to "編集", edit_recruit_path(@recruit.id), class: "btn btn-secondary" %>
-      <%= link_to "削除", recruit_path(@recruit.id), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
+    <% if user_signed_in? %>
+      <% if @recruit.user_id == current_user.id %>
+        <%= link_to "編集", edit_recruit_path(@recruit.id), class: "btn btn-secondary" %>
+        <%= link_to "削除", recruit_path(@recruit.id), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
+      <% end %>
     <% end %>
   </div>
-
-  <div class="align-items-center p-3 my-3 text-light bg-gray rounded shadow-sm">
-    <p>コメント</p>
-    <div class="row border-bottom border-gray p-2 my-4 mx-1">
-      <% @recruit.comments.each do |comment| %>
-        <div class="col-auto">
-          <%= image_tag comment.user.get_profile_image.variant(resize: "60x60!") %><%= comment.user.name %>
-        </div>
-        <div class="col-auto">
-          <%= safe_join(comment.comment.split("\n"),tag(:br)) %>
-        </div>
-        <div class="col-auto">
-          <%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
-        </div>
-        <% if comment.user == current_user %>
+  <% if @recruit.status == "published" %>
+    <div class="align-items-center p-3 my-3 text-light bg-gray rounded shadow-sm">
+      <p>コメント</p>
+      <div class="row border-bottom border-gray p-2 my-4 mx-1">
+        <% @recruit.comments.each do |comment| %>
           <div class="col-auto">
-            <%= link_to "削除", recruit_comment_path(comment.recruit, comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
+            <%= image_tag comment.user.get_profile_image.variant(resize: "60x60!") %><%= comment.user.name %>
           </div>
-        <% end %>
-    <% end %>
+          <div class="col-auto">
+            <%= safe_join(comment.comment.split("\n"),tag(:br)) %>
+          </div>
+          <div class="col-auto">
+            <%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
+          </div>
+          <% if comment.user == current_user %>
+            <div class="col-auto">
+              <%= link_to "削除", recruit_comment_path(comment.recruit, comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
+            </div>
+          <% end %>
+      <% end %>
+      </div>
     </div>
-  </div>
-  <div>
-    <%= form_with model: [@recruit, @comment] do |f| %>
-      <%= f.text_area :comment, placeholder: "コメント", size: "60x10" %>
-      <%= f.submit "送信する" %>
+    <% if user_signed_in? %>
+      <div>
+        <%= form_with model: [@recruit, @comment] do |f| %>
+          <%= f.text_area :comment, placeholder: "コメント", size: "60x10" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 </div>

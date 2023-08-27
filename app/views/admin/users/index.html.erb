@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-flex align-items-center p-3 my-2">
-    <h4 class="border-bottom border-primary border-3 page-title">ユーザーを探す</h4>
+    <h4 class="border-bottom border-primary border-3 page-title">ユーザー一覧</h4>
     <div class="ml-auto">
       <%= form_tag({controller:"users",action:"index"}, method: :get) do %>
       <%= text_field_tag :search, "", placeholder: "ユーザー名" %>

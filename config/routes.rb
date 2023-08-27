@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: "ublic/homes#top", as: 'top'
+  root to: "public/homes#top", as: 'top'
   get '/about', to: 'public/homes#about', as: 'about'
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get 'followers' => 'follows#followers', as: 'followers'
     end
     get 'following_users' => 'follows#index', as: 'following_users'
+    get 'drafts', to: 'recruits#drafts', as: 'drafts'
     # get 'search_play_histores'=>'playHistores#search_play_histores', as: 'search_play_histores'
   #   post '/user/:/users/:user_id/follows'
   #   patch '/users/:user_id/follows'

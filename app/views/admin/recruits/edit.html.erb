@@ -27,6 +27,15 @@
             <%= f.label :recruit_status_false, "募集終了" %>
           </td>
         </tr>
+        <tr>
+          <th></th>
+          <td>
+            <%= f.radio_button :status, 0 %>
+            <%= f.label :status_published, "公開" %>
+            <%= f.radio_button :status, 1 %>
+            <%= f.label :recruit_status_draft, "下書き" %>
+          </td>
+        </tr>
         <tr class="pb-2-my-3">
           <th></th>
           <td>

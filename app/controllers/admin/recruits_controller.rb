@@ -37,6 +37,6 @@ class Admin::RecruitsController < ApplicationController
   private
 
   def recruit_params
-    params.require(:recruit).permit(:title_id, :scenario_name, :message, :recruit_status)
+    params.require(:recruit).permit(:title_id, :scenario_name, :message, :recruit_status, :status)
   end
 end

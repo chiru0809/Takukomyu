@@ -1,14 +1,17 @@
 class Public::RecruitsController < ApplicationController
   def index
     if params[:search] == nil
-      @recruits = Recruit.all
+      @recruits = Recruit.published
     elsif params[:search] == ''
-      @recruits = Recruit.all
+      @recruits = Recruit.published
     else
-      @search_title = params[:search] 
-      @recruits = Recruit.where(title_id: @search_title )
+      @search_title = params[:search]
+      @recruits = Recruit.published.where(title_id: @search_title )
     end
+  end
 
+  def drafts
+    @recruits = current_user.recruits.draft
   end
 
   def new
@@ -33,6 +36,9 @@ class Public::RecruitsController < ApplicationController
 
   def edit
     @recruit = Recruit.find(params[:id])
+    if @recruit.user_id =! current_user.id
+      redirect_to recruit_path(@recruit.id)
+    end
   end
 
   def update
@@ -43,7 +49,7 @@ class Public::RecruitsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     recruit = Recruit.find(params[:id])
     recruit.destroy
@@ -53,6 +59,6 @@ class Public::RecruitsController < ApplicationController
   private
 
   def recruit_params
-    params.require(:recruit).permit(:title_id, :scenario_name, :message, :recruit_status)
+    params.require(:recruit).permit(:title_id, :scenario_name, :message, :recruit_status, :status)
   end
 end

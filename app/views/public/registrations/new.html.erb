@@ -19,15 +19,15 @@
             </div>
           </div>
           <div class="row mb-4">
-            <label for="inputPassword" class="col-sm-3 col-form-label">パスワード<br>(6桁以上)</label>
+            <label for="inputPassword" class="col-sm-3 col-form-label">パスワード</label>
             <div class="col-sm-6">
-              <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", :placeholder => "6桁以上" %>
             </div>
           </div>
           <div class="row mb-4">
-            <label for="inputPassword" class="col-sm-3 col-form-label">パスワード<br>(確認)</label>
+            <label for="inputPassword" class="col-sm-3 col-form-label"></label>
             <div class="col-sm-6">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", :placeholder => "パスワード確認" %>
             </div>
           </div>
           <%= f.submit "新規登録", class: "btn btn-sign_up btn-block mb-3"%>

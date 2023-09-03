@@ -1,7 +1,7 @@
 class PlayHistory < ApplicationRecord
-  validates :scenario_name, presence: true
+  validates :scenario_name, presence: true, length: { minimum: 1, maximum: 40 }
   validates :play_style, presence: true
-  validates :is_active, presence: true
+  # validates :is_active, presence: true
 
   belongs_to :user
   belongs_to :title

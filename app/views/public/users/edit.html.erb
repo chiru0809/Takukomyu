@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center p-3 my-2">
     <h4 class="border-bottom border-primary border-3 page-title">ユーザー編集</h4>
   </div>
-  <div class="first-form mx-auto">
+  <div class="first-form mx-auto mb-3">
     <div class="my-3 p-4 bg-white rounded shadow-sm">
       <%= form_with model: @user, url: user_path(@user.id) do |f| %>
         <form>
@@ -64,5 +64,8 @@
         </form>
       <% end %>
     </div>
+    <% if @user.id == current_user.id %>
+      <%= link_to "アカウント削除", user_path, method: :delete, class: "btn btn-danger", data: {confirm: "本当にアカウントを削除しますか？"} %>
+    <% end %>
   </div>
 </div>

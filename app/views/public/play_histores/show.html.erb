@@ -15,11 +15,7 @@
           <i class="fa-solid fa-lock"></i>
         <% end %>
       </h3>
-      <% if @play_history.title_id == 1 %>
-        　<span class="sm p-2 bg-success text-light"><%= @play_history.title.name %></span>　担当：<%= @play_history.play_style_i18n %>
-      <% else %>
-        　<span class="sm p-2 bg-warning text-light"><%= @play_history.title.name %></span>　担当：<%= @play_history.play_style_i18n %>
-      <% end %>
+      <span class="sm p-2 text-dark"><%= @play_history.title.name %></span>　担当：<%= @play_history.play_style_i18n %>
 
 
 
@@ -33,14 +29,18 @@
         <%= safe_join(@play_history.secret_memo.split("\n"), tag(:br) ) %></details>
     </div>
     <% if user_signed_in? %>
-      <% if @play_history.favorited_by?(current_user) %>
+      <% if @play_history.user_id == current_user.id %>
+        <%= image_tag ('favorit.png'), :size =>'25x25', class: "favorit_icon" %><%= @play_history.favorites.count %>いいね
+      <% else %>
+        <% if @play_history.favorited_by?(current_user) %>
           <%= link_to play_histore_favorites_path(@play_history), method: :delete, class: "btn btn-favorited" do %>
-            ♥<%= @play_history.favorites.count %>
+            ♥ いいね
           <% end %>
         <% else %>
           <%= link_to play_histore_favorites_path(@play_history), method: :post, class: "btn btn-favorit" do %>
-            ♡<%= @play_history.favorites.count %>
+            ♡ いいね
           <% end %>
+        <% end %>
       <% end %>
     <% end %>
     </strong></p>

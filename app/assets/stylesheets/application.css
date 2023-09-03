@@ -19,7 +19,7 @@ ul {
 }
 
 .page-title {
-    font-family: "Hannotate TC";
+  font-family: "Hannotate TC";
 }
 
 .btn-favorited {
@@ -35,4 +35,50 @@ ul {
 
 .first-form {
   max-width: 580px;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.top_image {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+}
+
+.top_image2 {
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+}
+
+.top_text {
+  position: absolute;
+  top: 300px;
+  left: 170px;
+  text-align: center;
+  font-family: "Hannotate TC";
+}
+
+.favorit_icon {
+  object-fit: cover;
+}
+
+.about_image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.user_image {
+  object-fit: cover;
+}
+
+#about {
+  position: relative;
+  top: 870px;
+}
+
+#about h3 {
+  text-align: center;
 }

@@ -4,11 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, length: { minimum: 1, maximum: 20 }
 
   belongs_to :title, optional: true
   has_many :recruits, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :play_histores, dependent: :destroy
+  has_many :play_historys, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
   has_many :follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy

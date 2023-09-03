@@ -1,12 +1,12 @@
 class Public::RecruitsController < ApplicationController
   def index
     if params[:search] == nil
-      @recruits = Recruit.published
+      @recruits = Recruit.published.page(params[:page]).per(20)
     elsif params[:search] == ''
-      @recruits = Recruit.published
+      @recruits = Recruit.published.page(params[:page]).per(20)
     else
       @search_title = params[:search]
-      @recruits = Recruit.published.where(title_id: @search_title )
+      @recruits = Recruit.published.where(title_id: @search_title).page(params[:page]).per(20)
     end
   end
 
@@ -36,7 +36,7 @@ class Public::RecruitsController < ApplicationController
 
   def edit
     @recruit = Recruit.find(params[:id])
-    if @recruit.user_id =! current_user.id
+    unless @recruit.user_id == current_user.id
       redirect_to recruit_path(@recruit.id)
     end
   end

@@ -3,7 +3,7 @@ class Public::FollowsController < ApplicationController
     user = current_user
     @following_users = user.following_users
   end
-  
+
   def create
     current_user.follow(params[:user_id])
     redirect_to user_path(params[:user_id])

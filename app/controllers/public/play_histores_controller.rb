@@ -1,21 +1,12 @@
 class Public::PlayHistoresController < ApplicationController
   def index
     if params[:search] == nil
-      @play_histores = PlayHistory.all
+      @play_histores = PlayHistory.where(is_active: true).all.page(params[:page]).per(20)
     elsif params[:search] == ''
-      @play_histores = PlayHistory.all
+      @play_histores = PlayHistory.where(is_active: true).all.page(params[:page]).per(20)
     else
-      @play_histores = PlayHistory.where("scenario_name LIKE ? ",'%' + params[:search] + '%')
+      @play_histores = PlayHistory.where(is_active: true).where("scenario_name LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(20)
     end
-  end
-
-  def search_tag
-    #検索結果画面でもタグ一覧表示
-    @tag_list=Tag.all
-　　　　　　　#検索されたタグを受け取る
-    @tag=Tag.find(params[:tag_id])
-　　　　　　　　#検索されたタグに紐づく投稿を表示
-    @posts=@tag.posts.page(params[:page]).per(10)
   end
 
   def new

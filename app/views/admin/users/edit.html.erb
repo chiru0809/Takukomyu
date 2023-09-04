@@ -64,5 +64,6 @@
         </form>
       <% end %>
     </div>
+    <%= link_to "アカウント削除", user_path, method: :delete, class: "btn btn-danger", data: {confirm: "本当にアカウントを削除しますか？"} %>
   </div>
 </div>

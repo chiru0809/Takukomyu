@@ -9,19 +9,13 @@
   </div>
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h3 class="d-inline">
-        <%= @play_history.scenario_name %>
-        <% if @play_history.is_active == false %>
-          <i class="fa-solid fa-lock"></i>
-        <% end %>
-      </h3>
-      <% if @play_history.title_id == 1 %>
-        　<span class="sm p-2 bg-success text-light"><%= @play_history.title.name %></span>　担当：<%= @play_history.play_style_i18n %>
-      <% else %>
-        　<span class="sm p-2 bg-warning text-light"><%= @play_history.title.name %></span>　担当：<%= @play_history.play_style_i18n %>
+    <h3 class="d-inline">
+      <%= @play_history.scenario_name %>
+      <% if @play_history.is_active == false %>
+        <i class="fa-solid fa-lock"></i>
       <% end %>
-
-
+    </h3>
+    <span class="sm p-2 text-dark"><%= @play_history.title.name %></span>　担当：<%= @play_history.play_style_i18n %>
 
     <div class="mb-4">
       <h6 class="border-bottom border-gray pb-2 my-4"><strong>メモ</strong></h6>

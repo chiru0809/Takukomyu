@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :play_histores, only: [:index,:show, :edit, :update, :destroy]
     resources :titles, only: [:index, :create, :show, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :recruits, only: [:index,:show,:edit, :update, :destroy] do
       resource :comments, only: [:destroy]
     end

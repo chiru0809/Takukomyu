@@ -5,11 +5,7 @@
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <%= image_tag @recruit.user.get_profile_image.variant(resize: "80x80!") %>　<%= @recruit.user.name %>
     <h3 class="d-inline ml-3"><%= @recruit.scenario_name %></h3>
-    <% if @recruit.title_id == 1 %>
-      　<span class="p-2 bg-success text-light"><%= @recruit.title.name %></span>
-    <% else %>
-      　<span class="p-2 bg-warning text-light"><%= @recruit.title.name %></span>
-    <% end %>
+      <span class="p-2 text-dark"><%= @recruit.title.name %></span>
     <p class="mt-3"><strong>
       <% if @recruit.recruit_status == true %>
         <span class="text-success">募集中</span>
@@ -44,5 +40,4 @@
     <% end %>
     </div>
   </div>
-  <%= link_to "一覧に戻る", recruits_path, class: "btn btn-info" %>
 </div>

@@ -22,11 +22,9 @@
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <h6 class="border-bottom border-gray pb-2 mb-3"><strong>メインプレイ</strong></h6>
     <% if @user.title_id == nil %>
-      <p><span class="p-2 bg-gray text-light">未設定</span></p>
-    <% elsif @user.title_id == 1 %>
-      <p><span class="p-2 bg-success text-light"><%= @user.title.name %></span></p>
+      <p><span class="p-2 text-dark">未設定</span></p>
     <% else %>
-      <p><span class="p-2 bg-warning text-light"><%= @user.title.name %></span></p>
+      <p><span class="p-2 text-dark"><%= @user.title.name %></span></p>
     <% end %>
 
     <p>
@@ -70,11 +68,7 @@
               <% end %>
             </td>
             <td class="align-middle">
-              <% if play_history.title_id == 1 %>
-                <span class="p-2 bg-success text-light"><%= play_history.title.name %></span>
-              <% else %>
-                <span class="p-2 bg-warning text-light"><%= play_history.title.name %></span>
-              <% end %>
+              <span class="p-2 text-dark"><%= play_history.title.name %></span>
             </td>
             <td class="align-middle"><%= play_history.play_style_i18n %></td>
             <td class="align-middle"><%= play_history.created_at.strftime('%Y/%m/%d') %></td>

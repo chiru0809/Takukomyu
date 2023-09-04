@@ -13,8 +13,8 @@ class Public::UsersController < ApplicationController
 
 
   def show
-    @play_histores = PlayHistory.where(user_id: params[:id])
-    @user_play_histores = PlayHistory.where(user_id: params[:id]).where(is_active: true)
+    @play_histores = PlayHistory.where(user_id: params[:id]).page(params[:page]).per(10)
+    @user_play_histores = PlayHistory.where(user_id: params[:id]).where(is_active: true).page(params[:page]).per(10)
     @user = User.find(params[:id])
   end
 

@@ -93,10 +93,10 @@
     </style>
   </head>
 
-  <body style="background-color:#E7E7E8;">
-    <header>
+  <body style="background-color: #F5F5F5;">
+    <header class="sticky-top">
       <div class="cotainer">
-        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#8FC8E7;">
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#AAAAAA;">
         <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -107,8 +107,11 @@
               <li class="nav-item text-dark">
                 <%= link_to user_path(current_user.id), class: 'nav-link text-dark' do %>
                   <%= image_tag current_user.get_profile_image.variant(resize: "50x50!") %>
-                  <%= current_user.name %>
+                   マイページ
                 <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to("使い方", top_path(anchor: "about"), class: "nav-link text-dark") %>
               </li>
               <li class="nav-item">
                 <%= link_to 'プレイ履歴', play_histores_path, class: 'nav-link text-dark' %>
@@ -140,7 +143,7 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to 'About', about_path, class: 'nav-link text-dark' %>
+                <%= link_to("使い方", { anchor: "about" }, class: "nav-link text-dark") %>
               <li class="nav-item">
                 <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
               </li>

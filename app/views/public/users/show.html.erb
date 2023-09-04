@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex align-items-center p-3 my-3 text-light bg-gray rounded shadow-sm">
     <%= image_tag @user.get_profile_image.variant(resize: "100x100!") %>
-    <h3>
+    <h3 class="ml-2">
       <%= @user.name %>
       <% if @user.is_private == true %>
         <i class="fa-solid fa-lock"></i>
@@ -19,7 +19,9 @@
           <% if current_user.following?(@user) %>
             <%= link_to "フォロー外す", user_follows_path(@user.id), method: :delete, class: "btn btn-danger" %>
           <% else %>
-            <%= link_to "フォローする", user_follows_path(@user.id), method: :post, class:"btn btn-success" %>
+            <%= link_to user_follows_path(@user.id), method: :post, class:"btn btn-light" do %>
+              <i class="fa-regular fa-star"></i> フォローする
+            <% end %>
           <% end %>
         </div>
       <% end %>
@@ -37,11 +39,9 @@
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <h6 class="border-bottom border-gray pb-2 mb-3"><strong>メインプレイ</strong></h6>
     <% if @user.title_id == nil %>
-      <p><span class="p-2 bg-gray text-light">未設定</span></p>
-    <% elsif @user.title_id == 1 %>
-      <p><span class="p-2 bg-success text-light"><%= @user.title.name %></span></p>
+      <p><span class="p-2 text-dark">未設定</span></p>
     <% else %>
-      <p><span class="p-2 bg-warning text-light"><%= @user.title.name %></span></p>
+      <p><span class="p-2 text-dark"><%= @user.title.name %></span></p>
     <% end %>
 
     <p>
@@ -55,7 +55,7 @@
 
     <h6 class="border-bottom border-gray py-2 my-2"><strong>自己紹介</strong></h6>
 
-    <p class="border border-secondary bg-message text-light p-3">
+    <p class="text-dark p-3">
       <% if @user.message == nil %>
         よろしくお願いします！
       <% else %>
@@ -102,7 +102,7 @@
               <tr>
                 <td class="align-middle"><%= link_to user_path(user_play_history.user_id) do %>
                     <%= image_tag user_play_history.user.get_profile_image.variant(resize: "60x60!") %>
-                    <%= play_history.user.name %>
+                    <%= user_play_history.user.name %>
                   <% end %>
                 </td>
                 <td class="align-middle">
@@ -111,11 +111,7 @@
                   <% end %>
                 </td>
                 <td class="align-middle">
-                  <% if user_play_history.title_id == 1 %>
-                    <span class="p-2 bg-success text-light"><%= user_play_history.title.name %></span>
-                  <% else %>
-                    <span class="p-2 bg-warning text-light"><%= user_play_history.title.name %></span>
-                  <% end %>
+                  <span class="p-2 text-dark"><%= user_play_history.title.name %></span>
                 </td>
                 <td class="align-middle"><%= user_play_history.play_style_i18n %></td>
                 <td class="align-middle"><%= user_play_history.created_at.strftime('%Y/%m/%d') %></td>
@@ -149,5 +145,12 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div class="pagenation">
+    <% if @user.id == current_user.id %>
+      <%= paginate @play_histores %>
+    <% else %>
+      <%= paginate @user_play_histores %>
+    <% end %>
   </div>
 </div>

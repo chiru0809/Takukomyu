@@ -3,18 +3,18 @@ class Public::UsersController < ApplicationController
 
   def index
     if params[:search] == nil
-      @users= User.where(is_private: false)
+      @users= User.where(is_private: false).page(params[:page]).per(20)
     elsif params[:search] == ''
-      @users= User.where(is_private: false)
+      @users= User.where(is_private: false).page(params[:page]).per(20)
     else
-      @users = User.where(is_private: false).where("name LIKE ? ",'%' + params[:search] + '%')
+      @users = User.where(is_private: false).where("name LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(20)
     end
   end
 
 
   def show
-    @play_histores = PlayHistory.where(user_id: params[:id])
-    @user_play_histores = PlayHistory.where(user_id: params[:id]).where(is_active: true)
+    @play_histores = PlayHistory.where(user_id: params[:id]).page(params[:page]).per(10)
+    @user_play_histores = PlayHistory.where(user_id: params[:id]).where(is_active: true).page(params[:page]).per(10)
     @user = User.find(params[:id])
   end
 
@@ -36,10 +36,16 @@ class Public::UsersController < ApplicationController
     @users = user.following_users
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to top_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :name, :title_id, :main_playstyle, :is_private, :profile_image)
+    params.require(:user).permit(:email, :name, :title_id, :main_playstyle, :is_private, :profile_image, :is_deleted)
   end
 
 end

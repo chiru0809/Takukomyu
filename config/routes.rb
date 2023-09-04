@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root to: "public/homes#top", as: 'top'
-  get '/about', to: 'public/homes#about', as: 'about'
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -19,7 +18,7 @@ Rails.application.routes.draw do
     resources :recruits, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:create, :update, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update]do
+    resources :users, only: [:index, :show, :edit, :update, :destroy]do
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'
       get 'followers' => 'follows#followers', as: 'followers'

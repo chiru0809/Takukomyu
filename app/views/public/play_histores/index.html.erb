@@ -36,11 +36,7 @@
               <% end %>
             </td>
             <td class="align-middle">
-              <% if play_history.title_id == 1 %>
-                <span class="p-2 bg-success text-light"><%= play_history.title.name %></span>
-              <% else %>
-                <span class="p-2 bg-warning text-light"><%= play_history.title.name %></span>
-              <% end %>
+              <span class="p-2 text-dark"><%= play_history.title.name %></span>
             </td>
             <td class="align-middle"><%= play_history.play_style_i18n %></td>
             <td class="align-middle"><%= play_history.created_at.strftime('%Y/%m/%d') %></td>
@@ -48,5 +44,8 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div class="pagenation">
+    <%= paginate @play_histores %>
   </div>
 </div>

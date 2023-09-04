@@ -46,11 +46,7 @@
               <% end %>
             </td>
             <td class="align-middle">
-              <% if recruit.title_id == 1 %>
-                <span class="p-2 bg-success text-light"><%= recruit.title.name %></span>
-              <% else %>
-                <span class="p-2 bg-warning text-light"><%= recruit.title.name %></span>
-              <% end %>
+              <span class="p-2 text-dark"><%= recruit.title.name %></span>
             </td>
             <td class="align-middle">
               <%= recruit.updated_at.strftime('%Y/%m/%d') %>
@@ -59,6 +55,8 @@
         <% end %>
       </tbody>
     </table>
-    </div>
+  </div>
+  <div class="pagenation">
+    <%= paginate @recruits %>
   </div>
 </div>

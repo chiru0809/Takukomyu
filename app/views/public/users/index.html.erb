@@ -10,7 +10,7 @@
   </div>
 
   <div class="my-2 p-3 bg-white rounded shadow-sm">
-    <table class="table table-hover">
+    <table class="table">
       <thead class="thead-light">
         <tr>
           <th>ユーザー名</th>
@@ -22,17 +22,15 @@
           <tr>
             <td class="pt-2">
               <%= link_to user_path(user.id) do %>
-                <%= image_tag user.get_profile_image.variant(resize: "60x60!") %>
+                <%= image_tag user.get_profile_image.variant(resize: "60x60!"), class: "user_image" %>
                 <%= user.name %>
               <% end %>
             </td>
             <td class="align-middle">
               <% if user.title_id == nil %>
-                <span class="p-2 bg-gray text-light">未設定</span>
-              <% elsif user.title_id == 1 %>
-                <span class="p-2 bg-success text-light"><%= user.title.name %></span>
+                <span class="p-2 text-dark">未設定</span>
               <% else %>
-                <span class="p-2 bg-warning text-light"><%= user.title.name %></span>
+                <span class="p-2 text-dark"><%= user.title.name %></span>
               <% end %>
 
               <% if user.main_playstyle == nil %>
@@ -45,6 +43,8 @@
         <% end %>
       </tbody>
     </table>
-    </div>
+  </div>
+  <div class="pagenation">
+    <%= paginate @users %>
   </div>
 </div>

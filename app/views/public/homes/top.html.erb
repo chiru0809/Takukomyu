@@ -1,9 +1,13 @@
-<div class="top_image">
-  <%= image_tag 'top.png', class: "top_image" %>
-  <%= image_tag 'top2.png', class: "top_image2" %>
-  <div class="top_text">
-    <h1 class="top_rogo">卓コミュ</h1>
-    <h4>〜TRPG好きが集まる場所〜</h4>
+<div class="top">
+  <div class="top_image">
+    <%= image_tag 'top2.png', class: "top_image2" %>
+    <div class="top_text">
+      <h1 class="top_rogo">卓コミュ</h1>
+      <h4>〜TRPG好きが集まる場所〜</h4>
+      <%= link_to '　　ログイン　　', new_user_session_path, class: "btn btn btn-login mt-2" %>
+      <%= link_to '　新規登録　　', new_user_registration_path, class: "btn btn btn-sign_up mt-2" %>
+      <%= link_to 'ゲストログイン', guest_sign_in_path, method: :post, class: "btn btn-secondary btn-block mt-2" %>
+    </div>
   </div>
 </div>
 

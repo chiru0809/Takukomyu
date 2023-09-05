@@ -42,9 +42,12 @@ ul {
 }
 
 .top_image {
+  background-image: url('top.png');
+  background-size: cover;
   position: absolute;
-  width: 100%;
-  object-fit: cover;
+  /*width: 100%;*/
+  /*object-fit: cover;*/
+  height: auto;
 }
 
 .top_image2 {
@@ -55,8 +58,8 @@ ul {
 
 .top_text {
   position: absolute;
-  top: 300px;
-  left: 170px;
+  top: 14vw;
+  left: 6vw;
   text-align: center;
   font-family: "Hannotate TC";
 }
@@ -76,7 +79,7 @@ ul {
 
 #about {
   position: relative;
-  top: 870px;
+  top: 50vw;
 }
 
 #about h3 {

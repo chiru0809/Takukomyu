@@ -5,9 +5,15 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resouce)
     play_histores_path
   end
-  
+
   def after_sign_out_path_for(resouce)
     new_user_session_path
+  end
+
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to play_histores_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   # GET /resource/sign_in

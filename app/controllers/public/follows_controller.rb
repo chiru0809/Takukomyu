@@ -1,7 +1,7 @@
 class Public::FollowsController < ApplicationController
   def index
     user = current_user
-    @following_users = user.following_users
+    @following_users = user.following_users.page(params[:page]).per(20)
   end
 
   def create

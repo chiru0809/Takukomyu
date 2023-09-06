@@ -2,6 +2,7 @@ class Public::FavoritesController < ApplicationController
   def index
     favorites= Favorite.where(user_id: current_user.id).pluck(:play_history_id)
     @favolit_play_histores = PlayHistory.find(favorites)
+    @favolit_play_histores = Kaminari.paginate_array(@favolit_play_histores).page(params[:page]).per(20)
 
   end
 

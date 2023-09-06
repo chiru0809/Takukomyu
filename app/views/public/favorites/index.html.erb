@@ -15,34 +15,5 @@
       <%= link_to "条件クリア", play_histores_path, class: "btn btn-secondary mt-1" %>
     </div>
   </div>
-  <div class="my-2 p-3 bg-white rounded shadow-sm">
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th>ユーザー</th><th>シナリオ名</th><th>タイトル</th><th>担当</th><th>登録日</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @favolit_play_histores.each do |favolit_play_history| %>
-          <tr>
-            <td class="align-middle"><%= link_to user_path(favolit_play_history.user_id) do %>
-                <%= image_tag favolit_play_history.user.get_profile_image.variant(resize: "60x60!") %>
-                <%= favolit_play_history.user.name %>
-              <% end %>
-            </td>
-            <td class="align-middle">
-              <%= link_to play_histore_path(favolit_play_history.id) do %>
-                <%= favolit_play_history.scenario_name %>
-              <% end %>
-            </td>
-            <td class="align-middle">
-              <span class="p-2 text-dark"><%= favolit_play_history.title.name %></span>
-            </td>
-            <td class="align-middle"><%= favolit_play_history.play_style_i18n %></td>
-            <td class="align-middle"><%= favolit_play_history.created_at.strftime('%Y/%m/%d') %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <%= render 'public/play_histores/play_history_list', play_histores: @favolit_play_histores %>
 </div>

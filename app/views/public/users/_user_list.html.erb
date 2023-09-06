@@ -1,0 +1,40 @@
+  <div class="my-2 p-3 bg-white rounded shadow-sm">
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>ユーザー名</th>
+          <th colspan="2">メインプレイ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.each do |following_user| %>
+          <tr>
+            <td class="pt-2">
+              <%= link_to user_path(following_user.id) do %>
+                <%= image_tag following_user.get_profile_image.variant(resize: "60x60!") %>
+                <%= following_user.name %>
+              <% end %>
+            </td>
+            <td class="align-middle">
+              <% if following_user.title_id == nil %>
+                <span class="p-2 bg-gray text-light">未設定</span>
+              <% elsif following_user.title_id == 1 %>
+                <span class="p-2 bg-success text-light"><%= following_user.title.name %></span>
+              <% else %>
+                <span class="p-2 bg-warning text-light"><%= following_user.title.name %></span>
+              <% end %>
+
+              <% if following_user.main_playstyle == nil %>
+                プレイスタイル：未設定
+              <% else %>
+                プレイスタイル：<%= following_user.main_playstyle_i18n %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagenation">
+    <%= paginate users %>
+  </div>

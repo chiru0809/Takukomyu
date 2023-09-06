@@ -17,11 +17,9 @@
             </td>
             <td class="align-middle">
               <% if following_user.title_id == nil %>
-                <span class="p-2 bg-gray text-light">未設定</span>
-              <% elsif following_user.title_id == 1 %>
-                <span class="p-2 bg-success text-light"><%= following_user.title.name %></span>
+                <span class="p-2 text-dark">未設定</span>
               <% else %>
-                <span class="p-2 bg-warning text-light"><%= following_user.title.name %></span>
+                <span class="p-2 text-dark"><%= following_user.title.name %></span>
               <% end %>
 
               <% if following_user.main_playstyle == nil %>

@@ -104,6 +104,12 @@ ActiveRecord::Schema.define(version: 2023_09_04_050353) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "title_id"
+    t.integer "main_playstyle"
+    t.text "message"
+    t.boolean "is_private", default: false, null: false
+    t.boolean "is_deleted", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

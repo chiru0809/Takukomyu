@@ -42,7 +42,7 @@ ul {
 }
 
 .top_image {
-  background-image: url('top.png');
+  background-image: image-url('top.png');
   background-size: cover;
   position: absolute;
   /*width: 100%;*/

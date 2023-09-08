@@ -23,8 +23,9 @@ class Public::RecruitsController < ApplicationController
     @recruit.user_id = current_user.id
     @recruit.recruit_status = true
     if @recruit.save
-      redirect_to recruit_path(@recruit.id)
+      redirect_to recruit_path(@recruit.id), notice: "登録しました。"
     else
+      flash.now[:alert] = "シナリオ名とメッセージを入力してください。"
       render :new
     end
   end
@@ -44,8 +45,10 @@ class Public::RecruitsController < ApplicationController
   def update
     @recruit = Recruit.find(params[:id])
     if @recruit.update(recruit_params)
+      flash[:notice] = "更新しました。"
       redirect_to recruit_path(@recruit.id)
     else
+      flash.now[:alert] = "シナリオ名とメッセージを入力してください"
       render :edit
     end
   end
@@ -53,6 +56,7 @@ class Public::RecruitsController < ApplicationController
   def destroy
     recruit = Recruit.find(params[:id])
     recruit.destroy
+    flash[:notice] = "削除しました。"
     redirect_to recruits_path(params[:recruit_id])
   end
 

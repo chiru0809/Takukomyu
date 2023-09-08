@@ -41,12 +41,14 @@ ul {
   justify-content: center;
 }
 
-.top_image {
+.top {
   background-image: image-url('top.png');
   background-size: cover;
+}
+
+.top_image {
   position: absolute;
-  /*width: 100%;*/
-  /*object-fit: cover;*/
+  width: 100%;
   height: auto;
 }
 
@@ -57,12 +59,18 @@ ul {
 }
 
 .top_text {
+  // width: 25%;
   position: absolute;
   top: 14vw;
   left: 6vw;
   text-align: center;
   font-family: "Hannotate TC";
 }
+
+.top_text h1, .top_text h4 {
+  font-size: 1.6rem;
+}
+
 
 .favorit_icon {
   object-fit: cover;
@@ -79,7 +87,7 @@ ul {
 
 #about {
   position: relative;
-  top: 50vw;
+  top: 8vw;
 }
 
 #about h3 {

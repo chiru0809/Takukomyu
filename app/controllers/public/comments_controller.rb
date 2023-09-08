@@ -1,18 +1,23 @@
 class Public::CommentsController < ApplicationController
 
   def create
-    recruit = Recruit.find(params[:recruit_id])
+    @comment = Comment.new
+    @recruit = Recruit.find(params[:recruit_id])
     comment = current_user.comments.new(comment_params)
-    comment.recruit_id = recruit.id
+    comment.recruit_id = @recruit.id
     if comment.save
-      redirect_to recruit_path(recruit)
+      flash[:notice] = "コメントを投稿しました"
+      redirect_to recruit_path(@recruit)
     else
-      render :show
+      flash[:alert] = "コメントは1文字以上入力してください"
+      render template: "public/recruits/show"
     end
   end
 
   def destroy
     Comment.find(params[:id]).destroy
+    @comment = Comment.new
+    flash[:notice] = "コメントを削除しました"
     redirect_to recruit_path(params[:recruit_id])
   end
 

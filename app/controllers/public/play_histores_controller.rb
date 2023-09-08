@@ -17,8 +17,9 @@ class Public::PlayHistoresController < ApplicationController
     @play_history = PlayHistory.new(play_history_params)
     @play_history.user_id = current_user.id
     if @play_history.save
-      redirect_to play_histore_path(@play_history.id)
+      redirect_to play_histore_path(@play_history.id), notice: "登録しました"
     else
+      flash.now[:alert] = "シナリオ名を入力してください"
       render :new
     end
   end
@@ -35,8 +36,10 @@ class Public::PlayHistoresController < ApplicationController
   def update
     @play_history = PlayHistory.find(params[:id])
     if @play_history.update(play_history_params)
+      flash[:notice] = "更新しました。"
       redirect_to play_histore_path(@play_history.id)
     else
+      flash.now[:alert] = "シナリオ名を入力してください。"
       render :edit
     end
   end
@@ -44,6 +47,7 @@ class Public::PlayHistoresController < ApplicationController
   def destroy
     @play_history = PlayHistory.find(params[:id])
     @play_history.destroy
+    flash[:notice] = "削除しました。"
     redirect_to play_histores_path
   end
 

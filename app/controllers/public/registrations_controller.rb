@@ -5,18 +5,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   before_action :ensure_normal_user, only: %i[update destroy]
 
-  def ensure_normal_user
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
-    end
-  end
-
   def after_sign_in_path_for(resouce)
     play_histores_path
   end
 
   def after_sign_out_path_for(resouce)
-    new_user_session_path
+    top_path
   end
 
   # GET /resource/sign_up

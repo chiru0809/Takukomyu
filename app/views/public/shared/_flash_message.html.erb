@@ -1,0 +1,11 @@
+<% flash.each do |message_type, message| %>
+  <% if flash[:notice] != nil %>
+    <p class="alert alert-success text-center mb-0">
+      <%= flash[:notice] %>
+    </p>
+  <% elsif flash[:alert] != nil %>
+    <p class="alert alert-danger text-center mb-0">
+      <%= flash.now[:alert] %>
+    </p>
+  <% end %>
+<% end %>

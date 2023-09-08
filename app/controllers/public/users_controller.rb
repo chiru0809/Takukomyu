@@ -11,7 +11,6 @@ class Public::UsersController < ApplicationController
     end
   end
 
-
   def show
     @play_histores = PlayHistory.where(user_id: params[:id]).page(params[:page]).per(10)
     @user_play_histores = PlayHistory.where(user_id: params[:id]).where(is_active: true).page(params[:page]).per(10)
@@ -21,6 +20,7 @@ class Public::UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if @user.id != current_user.id || @user.email == 'guest@example.com'
+      flash[:alert] = "編集できないユーザーです。"
       redirect_to user_path(@user.id)
     end
   end
@@ -28,8 +28,10 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:notice] = "更新しました。"
       redirect_to user_path(@user.id)
     else
+      flash.now[:alert] = "必須項目を入力してください。"
       render :edit
     end
   end
@@ -42,6 +44,7 @@ class Public::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
+    flash[:notice] = "アカウントを削除しました。"
     redirect_to top_path
   end
 

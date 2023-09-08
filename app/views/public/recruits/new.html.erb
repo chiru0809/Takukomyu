@@ -7,7 +7,7 @@
     <%= form_with model: @recruit, url: recruits_path do |f| %>
       <table class="table table-borderless">
         <tr class="border-bottom border-gray pb-2 my-3">
-          <th>シナリオ名</th>
+          <th>シナリオ名(必須)</th>
           <td><%= f.text_field :scenario_name, size: "50x1" %></td>
         </tr>
         <tr class="border-bottom border-gray pb-2 mb-3">
@@ -15,7 +15,7 @@
           <td><%= f.collection_select(:title_id, Title.all, :id, :name, {}, {class:"select-box"}) %></td>
         </tr>
         <tr class="border-bottom border-gray pb-2 my-3">
-          <th>メッセージ</th>
+          <th>メッセージ(必須)</th>
           <td><%= f.text_area :message, placeholder: recruit_message, size: "60x20" %></td>
         </tr>
         <tr>

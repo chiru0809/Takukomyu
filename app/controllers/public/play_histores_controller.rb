@@ -30,6 +30,15 @@ class Public::PlayHistoresController < ApplicationController
   def show
     @user = PlayHistory.find(params[:id])
     @play_history = PlayHistory.find(params[:id])
+    if  user_signed_in?
+      if @play_history.user_id != current_user.id && @play_history.is_active != true
+        redirect_to play_histores_path
+      end
+    else
+      if  @play_history.is_active != true
+        redirect_to play_histores_path
+      end
+    end
   end
 
   def edit

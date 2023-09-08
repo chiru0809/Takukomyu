@@ -15,6 +15,15 @@ class Public::UsersController < ApplicationController
     @play_histores = PlayHistory.where(user_id: params[:id]).page(params[:page]).per(10)
     @user_play_histores = PlayHistory.where(user_id: params[:id]).where(is_active: true).page(params[:page]).per(10)
     @user = User.find(params[:id])
+    if  user_signed_in?
+      if @user.id != current_user.id && @user.is_private != false
+        redirect_to users_path
+      end
+    else
+      if @user.is_private != false
+        redirect_to users_path
+      end
+    end
   end
 
   def edit
@@ -57,5 +66,4 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :name, :title_id, :main_playstyle, :is_private, :profile_image, :is_deleted, :message)
   end
-
 end

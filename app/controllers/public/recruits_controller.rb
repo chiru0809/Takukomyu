@@ -36,6 +36,15 @@ class Public::RecruitsController < ApplicationController
   def show
     @recruit = Recruit.find(params[:id])
     @comment = Comment.new
+    if  user_signed_in?
+      if @recruit.user_id != current_user.id && @recruit.status != "published"
+        redirect_to recruits_path
+      end
+    else
+      if @recruit.status != "published"
+        redirect_to recruits_path
+      end
+    end
   end
 
   def edit
@@ -65,7 +74,7 @@ class Public::RecruitsController < ApplicationController
     recruit = Recruit.find(params[:id])
     recruit.destroy
     flash[:notice] = "削除しました。"
-    redirect_to recruits_path(params[:recruit_id])
+    redirect_to recruits_pat
   end
 
   private

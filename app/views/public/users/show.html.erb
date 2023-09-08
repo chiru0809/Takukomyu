@@ -148,10 +148,14 @@
     </table>
   </div>
   <div class="pagenation">
-    <% if @user.id == current_user.id %>
-      <%= paginate @play_histores %>
+    <% if user_signed_in? %>
+      <% if @user.id == current_user.id %>
+        <%= paginate @play_histores %>
+      <% else %>
+        <%= paginate @user_play_histores %>
+      <% end %>
     <% else %>
-      <%= paginate @user_play_histores %>
+      <%= paginate @play_histores %>
     <% end %>
   </div>
 </div>

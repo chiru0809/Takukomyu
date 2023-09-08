@@ -19,10 +19,14 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user.id != current_user.id || @user.email == 'guest@example.com'
-      flash[:alert] = "編集できないユーザーです。"
-      redirect_to user_path(@user.id)
+    if  user_signed_in?
+      if @user.id != current_user.id || @user.email == 'guest@example.com'
+        redirect_to user_path(@user.id)
+      end
+    else
+      redirect_to users_path
     end
+
   end
 
   def update

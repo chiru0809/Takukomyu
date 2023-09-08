@@ -11,6 +11,9 @@ class Public::PlayHistoresController < ApplicationController
 
   def new
     @play_history = PlayHistory.new
+    unless user_signed_in?
+      redirect_to play_histores_path
+    end
   end
 
   def create
@@ -31,6 +34,13 @@ class Public::PlayHistoresController < ApplicationController
 
   def edit
     @play_history = PlayHistory.find(params[:id])
+    if  user_signed_in?
+      unless @play_history.user_id == current_user.id
+        redirect_to play_histore_path(@play_history.id)
+      end
+    else
+      redirect_to play_histores_path
+    end
   end
 
   def update

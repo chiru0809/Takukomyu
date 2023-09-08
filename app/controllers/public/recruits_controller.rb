@@ -16,6 +16,9 @@ class Public::RecruitsController < ApplicationController
 
   def new
     @recruit = Recruit.new
+    unless user_signed_in?
+      redirect_to play_histores_path
+    end
   end
 
   def create
@@ -37,9 +40,14 @@ class Public::RecruitsController < ApplicationController
 
   def edit
     @recruit = Recruit.find(params[:id])
-    unless @recruit.user_id == current_user.id
-      redirect_to recruit_path(@recruit.id)
+    if  user_signed_in?
+      unless @recruit.user_id == current_user.id
+        redirect_to recruit_path(@recruit.id)
+      end
+    else
+      redirect_to recruits_path
     end
+
   end
 
   def update

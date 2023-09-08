@@ -2,6 +2,13 @@ class Public::FollowsController < ApplicationController
   def index
     user = current_user
     @following_users = user.following_users.page(params[:page]).per(20)
+    if  user_signed_in?
+      unless @play_history.user_id == current_user.id
+        redirect_to play_histore_path(@play_history.id)
+      end
+    else
+      redirect_to play_histores_path
+    end
   end
 
   def create

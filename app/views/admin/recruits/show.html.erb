@@ -35,7 +35,7 @@
           <%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
         </div>
         <div class="col-auto">
-          <%= link_to "削除", admin_recruit_comments_path(comment.recruit, comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
+          <%= link_to "削除", admin_recruit_comment_path(comment.recruit, comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
         </div>
     <% end %>
     </div>

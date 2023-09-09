@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     resources :titles, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :recruits, only: [:index,:show,:edit, :update, :destroy] do
-      resource :comments, only: [:destroy]
+      resources :comments, only: [:destroy]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

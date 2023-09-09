@@ -4,7 +4,10 @@
   </div>
   <div class="ml-auto">
     <div class="d-flex align-items-center p-3 my-3 text-light bg-gray rounded shadow-sm">
-      <%= image_tag @play_history.user.get_profile_image.variant(resize: "80x80!") %>　<%= @play_history.user.name %>
+      <%= image_tag @play_history.user.get_profile_image.variant(resize: "80x80!") %>
+      <h3 class="ml-2">
+        <%= @play_history.user.name %>
+      </h3>
     </div>
   </div>
 

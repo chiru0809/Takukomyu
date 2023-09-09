@@ -74,7 +74,7 @@ class Public::RecruitsController < ApplicationController
     recruit = Recruit.find(params[:id])
     recruit.destroy
     flash[:notice] = "削除しました。"
-    redirect_to recruits_pat
+    redirect_to recruits_path
   end
 
   private

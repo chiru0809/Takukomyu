@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center p-3 my-3 text-light bg-gray rounded shadow-sm">
     <%= image_tag @user.get_profile_image.variant(resize: "100x100!") %>
     <h3 class="ml-2">
-      <%= @user.name %>
+      　<%= @user.name %>
       <% if @user.is_private == true %>
         <i class="fa-solid fa-lock"></i>
       <% end %>

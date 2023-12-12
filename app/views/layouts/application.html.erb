@@ -147,7 +147,7 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to("使い方", { anchor: "about" }, class: "nav-link text-dark") %>
+                <%= link_to("使い方", top_path(anchor: "about"), class: "nav-link text-dark") %>
               <li class="nav-item">
                 <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
               </li>
